@@ -1,15 +1,24 @@
 #include "errors.h"
 
+#include "brainf.h"
 #include "mem.h"  // read end note
 
-void Report(char *err, u32 character) {
-  if (character == NULL) {
+bool error = false;
+
+void Report(char *err, i32 character) {
+  if (character == NO_CHAR) {
     printf("Error: %s\n", err);
   } else
-    printf("Error: %s at character %li\n", err, character);
+    printf("Error: %s at character %i\n", err, character);
 
-  error = true;
+  if (!IsREPL()) {
+    error = true;
+    DestroyMem();
+    exit(0);
+  }
 }
+
+bool IsError() { return error; }
 
 // so... why I think that headers were a bad idea:
 // I am no expert C connoisseur but I just don't like how I had to include
@@ -19,5 +28,5 @@ void Report(char *err, u32 character) {
 // depends on the include? I'll stop ranting about this but yeah not really
 // likeable I suppose
 // temporary solution:
-// follow this priority - brainf > mem > errors
+// follow this priority - brainf > mem > pointer > errors
 // for moving include to source file in case of cyclic include

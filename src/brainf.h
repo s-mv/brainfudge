@@ -12,4 +12,6 @@ void Run(char *command);
 // bad naming in action, this just *Run*s what is in the file
 void Execute(char *file_name);
 
+bool IsREPL();
+
 #endif

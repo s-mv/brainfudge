@@ -3,8 +3,7 @@
 
 #include "common.h"
 
-bool error = false;
-
-void Report(char *err, uint32_t character);
+void Report(char *err, i32 character);
+bool IsError();
 
 #endif
