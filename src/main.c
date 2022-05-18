@@ -14,12 +14,17 @@ int main(int argc, char *argv[]) {
 
   // REPL
   printf(
-      "Brainfuck: version s.m.v.\n"
-      "Press ctrl-C to exit.\n");
+      "Brainfuck interpreter: version s.m.v.\n"
+      "Please keep input under %d characters!\n"
+      "Press ctrl-C to exit.\n",
+      REPL_MAX_CHARS);
   for (;;) {
-    char c[1000];
-    printf("> ");
-    scanf("%s", c);
+    printf(": ");
+
+    // TODO: change this to have a flexible length
+    char c[REPL_MAX_CHARS];
+    fgets(c, REPL_MAX_CHARS, stdin);
+
     Run(c);
     printf("\n");
   }

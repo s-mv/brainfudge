@@ -1,9 +1,11 @@
 #ifndef smv_bf_impl_h
 #define smv_bf_impl_h
 
+#include <signal.h>
+
 #include "common.h"
-#include "mem.h"
 #include "errors.h"
+#include "mem.h"
 
 // initialise... _stuff_
 void Init();

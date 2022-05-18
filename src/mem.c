@@ -17,34 +17,31 @@ void InitMem() {
 }
 
 // oh no here we are, read end note
-void ExpandMem() {
+void ExpandMem() { ExpandMemTo(mem_len * 2); }
+
+void ExpandMemTo(u16 len) {
+  mem_len = len;
   if (mem_len >= MEMORY_LIMIT) {
     Report("Memory limit reached. Stopping.", NO_CHAR);
-    return;
   }
 
-  mem_len *= 2;
-  // sizeof(u8) seems redundant but idk man I used it
+  // sizeof(u8) seems redundant but idk I used it
   // does it just shove in the size at compile-time? idk again but likely
-  memory = realloc(memory, mem_len * sizeof(u8));
+  memory = (u8 *)realloc(memory, mem_len * sizeof(u8));
+
+  printf("mem len %d\n", mem_len);
 
   if (memory == NULL) {
     Report("Error managing memory. Stopping.", NO_CHAR);
-    return;
   }
 }
 
 void DestroyMem() { free(memory); }
 
-u8 Mem(u16 pointer) {
-  // I was using if till now (also line 42)
-  // but this should work better with `while`
-  while (pointer > mem_len) ExpandMem();
-  return memory[pointer];
-}
+u8 Mem(u16 pointer) { return (pointer > mem_len) ? 0 : memory[pointer]; }
 
 void SetMem(u16 pointer, u8 data) {
-  while (pointer > mem_len) ExpandMem();
+  if (pointer > mem_len) ExpandMemTo((pointer - pointer % 2) * 2);
   memory[pointer] = data;
 }
 

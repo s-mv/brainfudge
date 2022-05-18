@@ -7,7 +7,7 @@ bool error = false;
 
 void Report(char *err, i32 character) {
   if (character == NO_CHAR) {
-    printf("Error: %s\n", err);
+    // printf("Error: %s\n", err);
   } else
     printf("Error: %s at character %i\n", err, character);
 
