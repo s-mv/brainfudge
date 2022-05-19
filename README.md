@@ -15,7 +15,7 @@ make
 ./brainfuck
 ```
 ## Why did you make this?
-I saw a video on brainfuck by exurb1a and my brain decided to make something. I really don't know why my brain acts like that, but it was nice making what I made.
+I saw a video on brainfuck by fireship and my brain decided to make something. I really don't know why my brain acts like that, but it was nice making what I made.
 ## TODO
 - Better memory management.
 - Better error handling (specially for REPL).
