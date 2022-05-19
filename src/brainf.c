@@ -1,9 +1,11 @@
 #include "brainf.h"
 
 #include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
-#include <sys/types.h>
+#include <unistd.h>
 
 // !!(is this a session?)
 // !(is a file being run?)
@@ -96,7 +98,6 @@ void RunChar(char c) {
       break;
     }
     default:
-      printf("character: %c", c);
       // ignore
       break;
   }
@@ -105,15 +106,17 @@ void RunChar(char c) {
 void Execute(char *file_name) {
   REPL = false;  // not a session
 
-  FILE *file = fopen(file_name, "r");
-  // get length
-  fseek(file, 0, SEEK_END);
-  char command[ftell(file)];
+  char *command;
 
-  // read to command
-  rewind(file);
-  fscanf(file, "%s", command);
-  printf("command %s\n", command);
+  int f = open(file_name, O_RDONLY);
+  if (f == -1) Report("Issue opening file.", NO_CHAR);
+
+  struct stat sb;
+  if (fstat(f, &sb) == -1) Report("Issue reading file.", NO_CHAR);
+
+  command = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, f, 0);
+  if (command == MAP_FAILED) Report("Issue reading file.", NO_CHAR);
+
   Run(command);
 }
 

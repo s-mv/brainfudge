@@ -14,7 +14,7 @@ void Report(char *err, u32 character) {
   // if (!IsREPL()) {
     error = true;
     DestroyMem();
-    exit(0);
+    exit(EXIT_FAILURE);
   // }
 }
 
