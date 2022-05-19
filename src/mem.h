@@ -6,6 +6,8 @@
 #include "common.h"
 #include "errors.h"
 
+#define MEMORY_LIMIT ((u16)30000)
+
 // initialise/re-initialise memory length
 void InitMem();
 // expand memory to twice the size

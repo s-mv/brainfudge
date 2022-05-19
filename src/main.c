@@ -1,6 +1,8 @@
 #include "brainf.h"
 #include "common.h"
 
+extern u32 id;
+
 int main(int argc, char *argv[]) {
   Init();
 
@@ -18,14 +20,16 @@ int main(int argc, char *argv[]) {
       "Please keep input under %d characters!\n"
       "Press ctrl-C to exit.\n",
       REPL_MAX_CHARS);
-  for (;;) {
+  loop {
     printf(": ");
 
     // TODO: change this to have a flexible length
     char c[REPL_MAX_CHARS];
     fgets(c, REPL_MAX_CHARS, stdin);
 
+    id = 0;
     Run(c);
+
     printf("\n");
   }
   return 0;

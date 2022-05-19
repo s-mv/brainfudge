@@ -5,17 +5,17 @@
 
 bool error = false;
 
-void Report(char *err, i32 character) {
+void Report(char *err, u32 character) {
   if (character == NO_CHAR) {
-    // printf("Error: %s\n", err);
+    printf("Error: %s\n", err);
   } else
-    printf("Error: %s at character %i\n", err, character);
-
-  if (!IsREPL()) {
+    printf("Error: %s (at character %i)\n", err, character);
+  // no REPL checking for now
+  // if (!IsREPL()) {
     error = true;
     DestroyMem();
     exit(0);
-  }
+  // }
 }
 
 bool IsError() { return error; }

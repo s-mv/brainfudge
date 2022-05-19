@@ -1,15 +1,9 @@
 #include "mem.h"
 
-#define MEMORY_LIMIT (65536)
-
 u16 mem_len = 8;  // length of memory
 u8 *memory;       // memory
 
 void InitMem() {
-  // first free memory
-  // NOTE: what? when will this even be needed?
-  free(memory);
-
   // at the very beginning, we go with 8 bytes instead of 1 single byte because
   // 7 extra bytes for only 1 used sounds okay; having to expand to 2, then 4,
   // then 8 the very instant you start running the program, not that okay
@@ -20,20 +14,18 @@ void InitMem() {
 void ExpandMem() { ExpandMemTo(mem_len * 2); }
 
 void ExpandMemTo(u16 len) {
-  mem_len = len;
-  if (mem_len >= MEMORY_LIMIT) {
+  if (mem_len == len) return;
+  // note, this will never be true but I'll keep it for safety
+  // TODO: reset pointer to old value (though that should never happen)
+  if (mem_len >= MEMORY_LIMIT)
     Report("Memory limit reached. Stopping.", NO_CHAR);
-  }
+  mem_len = len;
 
   // sizeof(u8) seems redundant but idk I used it
   // does it just shove in the size at compile-time? idk again but likely
   memory = (u8 *)realloc(memory, mem_len * sizeof(u8));
 
-  printf("mem len %d\n", mem_len);
-
-  if (memory == NULL) {
-    Report("Error managing memory. Stopping.", NO_CHAR);
-  }
+  if (memory == NULL) Report("Error managing memory. Stopping.", NO_CHAR);
 }
 
 void DestroyMem() { free(memory); }
@@ -41,7 +33,9 @@ void DestroyMem() { free(memory); }
 u8 Mem(u16 pointer) { return (pointer > mem_len) ? 0 : memory[pointer]; }
 
 void SetMem(u16 pointer, u8 data) {
-  if (pointer > mem_len) ExpandMemTo((pointer - pointer % 2) * 2);
+  // NOTE this condition is always false, I don't know why I've kept it, maybe
+  // will remove when I'm done and polishing
+  if (pointer > mem_len) ExpandMemTo(pointer * 2);
   memory[pointer] = data;
 }
 
