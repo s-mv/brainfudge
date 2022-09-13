@@ -28,4 +28,12 @@ static const char *help_message =
 char *read_file(char *file_name);
 void write_file(char *file_name);
 
+void *grow_array(void *arr, int size);
+
+#define GROW_ARRAY(__smvArr__, __smvSize__, __smvType__)    \
+  {                                                         \
+    __smvArr__ = (__smvType__ *)grow_array(                 \
+        (__smvArr__), (__smvSize__) * sizeof(__smvType__)); \
+  }
+
 #endif

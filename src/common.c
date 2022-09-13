@@ -24,6 +24,11 @@ char* read_file(char* file_name) {
   return command;
 }
 
-void write_file(char *file_name) {
-  // write()
+void *grow_array(void *arr, int size) {
+  void *newArr = realloc(arr, size);
+  if (newArr == NULL) {
+    free(newArr);
+    Report("Out of array limits.", NO_CHAR);
+  }
+  return newArr;
 }

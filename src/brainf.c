@@ -91,7 +91,6 @@ void RunChar(char c) {
       break;
     }
     default:
-      // ignore
       break;
   }
 }
