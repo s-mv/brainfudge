@@ -2,3 +2,5 @@ src.old/
 .vscode
 ./brainfuck
 ./out.c
+./out
+./main.bf
