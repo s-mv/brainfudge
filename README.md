@@ -1,4 +1,4 @@
-# brainf
+# brainfuck
 A brainfuck interpreter in C. Made by me!  
 Though, literally everyone has done this.
 114 semicolons have been used so far.
@@ -6,21 +6,29 @@ Though, literally everyone has done this.
 It's a... uh... I-   
 Just read this: https://en.wikipedia.org/wiki/Brainfuck
 ## How to run this?
-```
+First compile the files:
+```bash
 make
-./brainfuck -f <file>
 ```
-...or if you feel like using REPL (though not yet fully functional):
+Then:
 ```
-./brainfuck
+./brainfuck -h        # for help
+./brainfuck           # for running REPL
+./brainfuck -f <file> # for running brainfuck
+./brainfuck -c <file> # for compiling to C
 ```
+
 ## Why did you make this?
-I saw a video on brainfuck by fireship and my brain decided to make something. I really don't know why my brain acts like that, but it was nice making what I made.
+I saw a video on brainfuck by Fireship and my brain decided to make something.
+I really don't know why my brain acts like that, but it was nice making what I made.
+
 ## TODO
 - Better memory management.
 - Better error handling (specially for REPL).
 - Fix potential undefined behaviour and bugs.
+
 ## Updates from last version:
-I'm dumb.
+Now you can compile brainfuck to C!
+
 ## Anything else?
-I dislike swearing when it comes to code somehow.
+Now to add indentation to the compiled C... Tiresome work, heh.
