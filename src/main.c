@@ -1,5 +1,6 @@
 #include "brainf.h"
 #include "common.h"
+#include "transpiler.h"
 
 extern u32 id;
 
@@ -8,8 +9,22 @@ int main(int argc, char *argv[]) {
 
   // go through arguments
   for (int i = 0; i < argc; i++) {
-    if (!strcmp(argv[i], "-f") && i + 1 < argc) {
-      Execute(argv[i + 1]);
+    if (!strcmp(argv[i], "-h")) {
+      printf("%s", help_message);
+      return 0;
+    }
+    if (!strcmp(argv[i], "-f")) {
+      if (i + 1 >= argc)
+        printf("File name not provided.\n");
+      else
+        Execute(argv[i + 1]);
+      return 0;
+    }
+    if (!strcmp(argv[i], "-c")) {
+      if (i + 1 >= argc)
+        printf("File name not provided.\n");
+      else
+        Compile(argv[i + 1]);
       return 0;
     }
   }
@@ -18,7 +33,8 @@ int main(int argc, char *argv[]) {
   printf(
       "Brainfuck interpreter: version s.m.v.\n"
       "Please keep input under %d characters!\n"
-      "Press ctrl-C to exit.\n",
+      "Press ctrl-C to exit.\n"
+      "Use -h for help.\n",
       REPL_MAX_CHARS);
   loop {
     printf(": ");
