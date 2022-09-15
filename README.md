@@ -1,7 +1,6 @@
 # brainfuck
 A brainfuck interpreter in C. Made by me!  
 Though, literally everyone has done this.
-114 semicolons have been used so far.
 ## What is brainfuck?
 It's a... uh... I-   
 Just read this: https://en.wikipedia.org/wiki/Brainfuck
