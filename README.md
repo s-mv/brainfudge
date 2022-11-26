@@ -5,10 +5,15 @@ Though, literally everyone has done this.
 It's a... uh... I-   
 Just read this: https://en.wikipedia.org/wiki/Brainfuck
 ## How to run this?
+Prerequisite: install realine.
+```bash
+sudo apt install libreadline-dev
+```
 First compile the files:
 ```bash
 make
 ```
+You can optionally add in `CC=<compiler of your choice>`.  
 Then:
 ```
 ./brainfuck -h        # for help

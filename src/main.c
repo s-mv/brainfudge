@@ -1,3 +1,6 @@
+#include <readline/history.h>
+#include <readline/readline.h>
+
 #include "brainf.h"
 #include "common.h"
 #include "transpiler.h"
@@ -30,25 +33,23 @@ int main(int argc, char *argv[]) {
   }
 
   // REPL
+  // now with readline hehe
   printf(
       "Brainfuck interpreter: version s.m.v.\n"
       "Please keep input under %d characters!\n"
       "Press ctrl-C to exit.\n"
       "Use -h for help.\n",
       REPL_MAX_CHARS);
+
+  read_history("./.bf_hist");
   loop {
-    printf(": ");
-
-    // TODO: change this to have a flexible length
-    char c[REPL_MAX_CHARS];
-    fgets(c, REPL_MAX_CHARS, stdin);
-
     id = 0;
+    char *c = readline(": ");
     Run(c);
+    add_history(c);
 
     printf("\n");
   }
+
   return 0;
 }
-// I DON "TKNOW WHAT"I AM DOING WITH MY LI FE HEKPE HELP
-// kidding, take care dear programmers

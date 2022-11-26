@@ -1,4 +1,5 @@
 #include "brainf.h"
+#include <readline/history.h>
 
 // !!(is this a session?)
 // !(is a file being run?)
@@ -118,6 +119,7 @@ void SetPointer(u16 loc_) {
 bool IsREPL() { return REPL; }
 
 void Close(int code) {
+  write_history("./.bf_hist");
   // again, TODO ctrl-C exit fgets
   printf("\nExited.\n");
   DestroyMem();

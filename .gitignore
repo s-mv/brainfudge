@@ -1,6 +1,6 @@
-src.old/
 .vscode
-./brainfuck
-./out.c
-./out
-./main.bf
+brainfuck
+out.c
+out
+main.bf
+.bf_hist
