@@ -6,8 +6,17 @@
 #include "transpiler.h"
 
 extern u32 id;
+bool repl_quit = true;
+
+void Close(int code) {
+  write_history("./.bf_hist");
+  Destroy();
+  exit(0);
+}
 
 int main(int argc, char *argv[]) {
+  signal(SIGINT, Close);
+
   Init();
 
   // go through arguments
@@ -34,6 +43,7 @@ int main(int argc, char *argv[]) {
 
   // REPL
   // now with readline hehe
+
   printf(
       "Brainfuck interpreter: version s.m.v.\n"
       "Please keep input under %d characters!\n"
@@ -42,11 +52,13 @@ int main(int argc, char *argv[]) {
       REPL_MAX_CHARS);
 
   read_history("./.bf_hist");
+
   loop {
     id = 0;
     char *c = readline(": ");
     Run(c);
     add_history(c);
+    free(c);  // readline uses malloc
 
     printf("\n");
   }

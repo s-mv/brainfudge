@@ -1,6 +1,5 @@
 .vscode
 brainfuck
 out.c
-out
 main.bf
 .bf_hist

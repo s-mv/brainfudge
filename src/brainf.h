@@ -13,6 +13,7 @@ void Init();
 void Run(char *command);
 // bad naming in action, this just *Run*s what is in the file
 void Execute(char *file_name);
+void Destroy();
 
 bool IsREPL();
 

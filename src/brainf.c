@@ -15,14 +15,11 @@ u32 id = 0;  // not `index` because of strings.h having some function named so
 void SetPointer(u16 loc);
 void RunChar(char c);
 // void Loop(u32 index_, char *command);
-void Close(int code);
 
 // most redundant function award!
 // however, good for organising parts of the interpreter, I suppose
 void Init() {
   InitMem();
-  // atexit(DestroyMem);
-  signal(SIGINT, Close);
 }
 
 // loops, finally
@@ -118,12 +115,8 @@ void SetPointer(u16 loc_) {
 
 bool IsREPL() { return REPL; }
 
-void Close(int code) {
-  write_history("./.bf_hist");
-  // again, TODO ctrl-C exit fgets
-  printf("\nExited.\n");
+void Destroy() {
   DestroyMem();
-  exit(code);
 }
 
 // pointer.c only held SetPointer, IncrementPointer, GetPointer, Pointer along

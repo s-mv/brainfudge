@@ -28,7 +28,9 @@ void ExpandMemTo(u16 len) {
   if (memory == NULL) Report("Error managing memory. Stopping.", NO_CHAR);
 }
 
-void DestroyMem() { free(memory); }
+void DestroyMem() {
+  if (memory != NULL) free(memory);
+}
 
 u8 Mem(u16 pointer) { return (pointer > mem_len) ? 0 : memory[pointer]; }
 
