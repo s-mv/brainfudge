@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
   // now with readline hehe
 
   printf(
-      "Brainfuck interpreter: version s.m.v.\n"
+      "Brainfudge interpreter: version s.m.v.\n"
       "Please keep input under %d characters!\n"
       "Press ctrl-C to exit.\n"
       "Use -h for help.\n",
